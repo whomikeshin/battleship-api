@@ -2,11 +2,10 @@ Rails.application.routes.draw do
   root to: 'static_pages#root'
 
   namespace :api, defaults: { format: :json } do
-    resources :games, only: [:create, :destroy, :update]
+    resources :games, only: [:create, :show, :destroy]
 
-    resources :players, only: [:create, :destroy, :show]
+    resources :boards, only: [:create, :show, :destroy, :update]
 
-    resources :boards, only: [:create, :destroy, :show, :update]
+    resources :players, only: [:create, :show, :destroy]
   end
 end
-ls
