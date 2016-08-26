@@ -13,7 +13,14 @@ module.exports = {
   receivePlayers: function (players) {
     AppDispatcher.dispatch({
       actionType: PlayerConstants.PLAYERS_RECEIVED,
-      playesr: players
+      players: players
+    });
+  },
+
+  currentPlayerReceived: function(currentPlayer) {
+    AppDispatcher.dispatch({
+      actionType: PlayerConstants.CURRENT_PLAYER_RECEIVED,
+      currentPlayer: currentPlayer
     });
   }
 };

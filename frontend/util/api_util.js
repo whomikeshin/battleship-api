@@ -26,4 +26,19 @@ module.exports = {
       }
     });
   },
+
+  createPlayer: function(formData, callback) {
+    $.ajax({
+      type: 'POST',
+      url: 'api/players',
+      data: { player: formData },
+      success: function (currentPlayer) {
+        ApiActions.currentPlayerReceived(currentPlayer);
+        callback && callback();
+      },
+      error: function (data) {
+        console.log(data);
+      }
+    });
+  }
 };
