@@ -5,6 +5,7 @@ class Api::GamesController < ApplicationController
       render json: ["Game was created"]
     else
       render json: @game.errors.full_messages, status: 422
+    end
   end
 
   def show
