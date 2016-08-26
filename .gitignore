@@ -11,3 +11,14 @@
 /log/*
 !/log/.keep
 /tmp
+
+.DS_Store
+.byebug_history
+node_modules
+
+bundle.js
+bundle.js.map
+npm-debug.log
+
+# Ignore application configuration
+/config/application.yml
