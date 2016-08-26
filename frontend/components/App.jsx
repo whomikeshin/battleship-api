@@ -1,5 +1,6 @@
 var React = require('react'),
-    Player = require('./player');
+    Player = require('./player'),
+    Game = require('./game/game');
 
 var App = React.createClass({
   render: function () {
@@ -7,6 +8,7 @@ var App = React.createClass({
       <div className="main">
         <h2>Battleship</h2>
         <Player/>
+        <Game/>
         {this.props.children}
       </div>
     );

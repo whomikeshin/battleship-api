@@ -1,11 +1,11 @@
 Player.destroy_all
 
-mike = Player.create!(
-  initials: "MKS"
-)
-
 comp = Player.create!(
   initials: "CPU"
+)
+
+mike = Player.create!(
+  initials: "MKS"
 )
 
 Game.destroy_all
