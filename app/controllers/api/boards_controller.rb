@@ -9,6 +9,12 @@ class Api::BoardsController < ApplicationController
   end
 
   def show
+    @board = Board.find(params[:id])
+    if @board.player.initials != "CPU"
+      render :show
+    else
+      render json: ["Cannot access computer board"]
+    end
   end
 
   def update
@@ -17,6 +23,7 @@ class Api::BoardsController < ApplicationController
       render :show
     else
       render json: @board.errors.full_messages, status: 422
+    end
   end
 
   def destroy
