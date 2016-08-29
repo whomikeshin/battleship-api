@@ -1,6 +1,6 @@
 var React = require('react'),
     Player = require('./player'),
-    Game = require('./game/game');
+    Game = require('./game');
 
 var App = React.createClass({
   render: function () {

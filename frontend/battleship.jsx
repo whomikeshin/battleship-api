@@ -8,8 +8,8 @@ var React = require('react'),
     IndexRoute = ReactRouter.IndexRoute,
 
     App = require('./components/App');
-    Game = require('./components/game/game');
-    
+    Game = require('./components/game');
+
 var router = (
   <Router history={hashHistory}>
     <Route path="/" component={App}/>
