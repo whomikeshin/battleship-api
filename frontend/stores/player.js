@@ -6,6 +6,14 @@ var PlayerStore = new Store(AppDispatcher),
     _currentPlayer,
     _currentPlayerHasBeenFetched = false;
 
+var reset = function (players) {
+  _players = players.slice();
+};
+
+PlayerStore.computerPlayer = function () {
+  return _players[0];
+};
+
 PlayerStore.currentPlayer = function () {
   return _currentPlayer;
 };
@@ -21,6 +29,9 @@ PlayerStore.__onDispatch = function (payload) {
       _currentPlayerHasBeenFetched = true;
       PlayerStore.__emitChange();
       break;
+    case PlayerConstants.PLAYERS_RECEIVED:
+      reset(payload.players);
+      PlayerStore.__emitChange();
   }
 };
 

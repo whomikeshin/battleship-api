@@ -1,12 +1,27 @@
 var ApiActions = require('../actions/api_actions');
 
 module.exports = {
-  fetchGame: function () {
+  // fetchGame: function () {
+  //   $.ajax({
+  //     type: 'GET',
+  //     url: 'api/games',
+  //     success: function (game) {
+  //       ApiActions.receiveGame(game);
+  //     },
+  //     error: function(data) {
+  //       console.log(data);
+  //     }
+  //   });
+  // },
+
+  createGame: function (formData, success) {
     $.ajax({
-      type: 'GET',
+      type: 'POST',
       url: 'api/games',
-      success: function (game) {
-        ApiActions.receiveGame(game);
+      data: { game: formData },
+      success: function(formData) {
+        ApiActions.receiveGame(formData);
+        success && success();
       },
       error: function(data) {
         console.log(data);
@@ -17,7 +32,7 @@ module.exports = {
   fetchPlayer: function (player_id) {
     $.ajax({
       type: 'GET',
-      url: 'api/players' + player_id,
+      url: 'api/players/' + player_id,
       success: function (player) {
         ApiActions.receivePlayers([player]);
       },

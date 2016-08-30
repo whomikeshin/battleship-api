@@ -1,5 +1,5 @@
 var React = require('react'),
-    PlayerForm = require('./player_form');
+    PlayerForm = require('./player_form'),
     PlayerStore = require('../stores/player');
 
 module.exports = React.createClass({

@@ -2,7 +2,8 @@ class Api::GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     if @game.save
-      render json: ["Game was created"]
+      render :show
+      # render json: ["Game was created"]
     else
       render json: @game.errors.full_messages, status: 422
     end
@@ -25,6 +26,9 @@ class Api::GamesController < ApplicationController
 
   private
   def game_params
-    params.require(:game).permit(:id, :player, :player_board, :computer_board)
+    # params.require(:game).permit(player: [:id, :initials], computer: [:id, :initials])
+    params.require(:game).permit(:player_id, :computer_id)
   end
+
+
 end

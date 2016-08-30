@@ -13,7 +13,6 @@ var React = require('react'),
 var router = (
   <Router history={hashHistory}>
     <Route path="/" component={App}/>
-
   </Router>
 );
 
