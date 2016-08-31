@@ -4,10 +4,10 @@ var AppDispatcher = require('../dispatcher/dispatcher'),
     BoardConstants = require('../constants/board_constants');
 
 module.exports = {
-  receiveBoard: function (player) {
+  receiveBoard: function (board) {
     AppDispatcher.dispatch({
-      actionType: BoardConstants.CELLS_RECEIVED,
-      cells: player.cells
+      actionType: BoardConstants.BOARD_RECEIVED,
+      board: board
     });
   },
 

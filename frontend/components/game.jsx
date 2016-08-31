@@ -1,6 +1,7 @@
 var React = require('react'),
     GameStore = require('../stores/game'),
     PlayerStore = require('../stores/player'),
+    BoardStore = require('../stores/board'),
     Board = require('./board'),
     ApiUtil = require('../util/api_util');
 
@@ -39,7 +40,7 @@ module.exports = React.createClass({
     var playerId = this.state.player_id;
 
     if (!playerId) {
-      return <div>Loading...</div>
+      return <div></div>
     }
 
     return (
@@ -63,9 +64,6 @@ module.exports = React.createClass({
   },
 
   _onClick: function (gameInfo) {
-    // var success = function () {
-    //   router.push("/");
-
     ApiUtil.createGame(gameInfo);
   }
 });

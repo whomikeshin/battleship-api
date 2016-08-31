@@ -47,3 +47,7 @@ body {
 .board div:nth-last-child(-n+5) {
   border-bottom: none;
 }
+
+.null {
+  background: red;
+}

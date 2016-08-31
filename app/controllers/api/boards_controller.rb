@@ -2,7 +2,7 @@ class Api::BoardsController < ApplicationController
   def create
     @board = Board.new(board_params)
     if @board.save
-      render json: ["Board was created"]
+      render :show
     else
       render json: @board.errors.full_messages, status: 422
     end

@@ -1,18 +1,6 @@
 var ApiActions = require('../actions/api_actions');
 
 module.exports = {
-  fetchBoard: function (boardId) {
-    $.ajax({
-      type: 'GET',
-      url: 'api/boards/' + boardId,
-      success: function (board) {
-        ApiActions.receiveBoard(board);
-      },
-      error: function(data) {
-        console.log(data);
-      }
-    });
-  },
 
   createGame: function (formData, callback) {
     $.ajax({
@@ -57,7 +45,7 @@ module.exports = {
     });
   },
 
-  createBoard: function(formData, success) {
+  createBoard: function(formData, callback) {
     $.ajax({
       type: 'POST',
       url: 'api/boards',
@@ -70,5 +58,32 @@ module.exports = {
         console.log(data);
       }
     });
-  }
+  },
+
+  fetchBoard: function (boardId) {
+    $.ajax({
+      type: 'GET',
+      url: 'api/boards/' + boardId,
+      success: function (board) {
+        ApiActions.receiveBoard(board);
+      },
+      error: function(data) {
+        console.log(data);
+      }
+    });
+  },
+
+  updateBoard: function(formData, callback) {
+    $.ajax({
+      type: 'PUT',
+      url: 'api/boards/' + formData.board_id,
+      data: { board: formData },
+      success: function (board) {
+        ApiActions.receiveBoard(board);
+      },
+      error: function(data) {
+        console.log(data);
+      }
+    });
+  },
 };
