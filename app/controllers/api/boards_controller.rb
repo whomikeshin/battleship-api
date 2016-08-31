@@ -39,6 +39,6 @@ class Api::BoardsController < ApplicationController
 
   private
   def board_params
-    params.require(:board).permit(:game_id, :player_id)
+    params.require(:board).permit(:game_id, :player_id, :cells)
   end
 end

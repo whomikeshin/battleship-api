@@ -1,6 +1,4 @@
 var React = require('react'),
-    History = require('react-router').History,
-
     GameStore = require('../stores/game'),
     PlayerStore = require('../stores/player'),
     Board = require('./board'),
@@ -25,7 +23,7 @@ module.exports = React.createClass({
 
     return {
       player_id: playerId,
-      computer_id: 1
+      computer_id: 3
     }
   },
 
@@ -51,7 +49,7 @@ module.exports = React.createClass({
             className="start"
             onClick={this._onClick.bind(this, this.state)}>Start
           </button>
-        <Board/>
+        <Board playerId={playerId}/>
       </div>
     );
   },

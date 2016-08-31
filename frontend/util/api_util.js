@@ -1,27 +1,12 @@
 var ApiActions = require('../actions/api_actions');
 
 module.exports = {
-  // fetchGame: function () {
-  //   $.ajax({
-  //     type: 'GET',
-  //     url: 'api/games',
-  //     success: function (game) {
-  //       ApiActions.receiveGame(game);
-  //     },
-  //     error: function(data) {
-  //       console.log(data);
-  //     }
-  //   });
-  // },
-
-  createGame: function (formData, success) {
+  fetchBoard: function (boardId) {
     $.ajax({
-      type: 'POST',
-      url: 'api/games',
-      data: { game: formData },
-      success: function(formData) {
-        ApiActions.receiveGame(formData);
-        success && success();
+      type: 'GET',
+      url: 'api/boards/' + boardId,
+      success: function (board) {
+        ApiActions.receiveBoard(board);
       },
       error: function(data) {
         console.log(data);
@@ -29,10 +14,25 @@ module.exports = {
     });
   },
 
-  fetchPlayer: function (player_id) {
+  createGame: function (formData, callback) {
+    $.ajax({
+      type: 'POST',
+      url: 'api/games',
+      data: { game: formData },
+      success: function(formData) {
+        ApiActions.receiveGame(formData);
+        callback && callback();
+      },
+      error: function(data) {
+        console.log(data);
+      }
+    });
+  },
+
+  fetchPlayer: function (playerId) {
     $.ajax({
       type: 'GET',
-      url: 'api/players/' + player_id,
+      url: 'api/players/' + playerId,
       success: function (player) {
         ApiActions.receivePlayers([player]);
       },
@@ -49,6 +49,21 @@ module.exports = {
       data: { player: formData },
       success: function (currentPlayer) {
         ApiActions.currentPlayerReceived(currentPlayer);
+        callback && callback();
+      },
+      error: function (data) {
+        console.log(data);
+      }
+    });
+  },
+
+  createBoard: function(formData, success) {
+    $.ajax({
+      type: 'POST',
+      url: 'api/boards',
+      data: { board: formData },
+      success: function (board) {
+        ApiActions.receiveBoard(board);
         callback && callback();
       },
       error: function (data) {

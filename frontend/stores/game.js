@@ -12,3 +12,5 @@ GameStore.__onDispatch = function (payload) {
       break;
   }
 };
+
+module.exports = GameStore;

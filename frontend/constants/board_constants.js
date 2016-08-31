@@ -1,0 +1,4 @@
+module.exports = {
+  BOARD_RECEIVED: "BOARD_RECEIVED",
+  CELLS_RECEIVED: "CELLS_RECEIVED"
+};

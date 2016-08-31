@@ -9,7 +9,6 @@ var App = React.createClass({
         <h2>Battleship</h2>
         <Player/>
         <Game/>
-        // {this.props.children}
       </div>
     );
   },

@@ -13,6 +13,10 @@ module.exports = React.createClass({
     this.onChangeToken = PlayerStore.addListener(this._onChange);
   },
 
+  componentWillUnmount: function () {
+    this.onChangeToken.remove();
+  },
+
   render: function () {
     var player = this.state.player;
 

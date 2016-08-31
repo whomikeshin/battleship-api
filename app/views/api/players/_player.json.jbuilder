@@ -1,1 +1,1 @@
-json.extract! player, :id, :initials
+json.extract! player, :id, :initials, :board
