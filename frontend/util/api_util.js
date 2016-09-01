@@ -73,6 +73,19 @@ module.exports = {
     });
   },
 
+  fetchComputerBoard: function (boardId) {
+    $.ajax({
+      type: 'GET',
+      url: 'api/boards/' + boardId,
+      success: function (board) {
+        ApiActions.receiveComputerBoard(board);
+      },
+      error: function(data) {
+        console.log(data);
+      }
+    });
+  },
+
   updateBoard: function(boardInfo, callback) {
     $.ajax({
       type: 'PUT',
@@ -110,6 +123,21 @@ module.exports = {
       data: { cell: cellInfo },
       success: function (cell) {
         ApiActions.updateCell(cell);
+        callback && callback();
+      },
+      error: function(data) {
+        console.log(data);
+      }
+    });
+  },
+
+  updateComputerCell: function(cellInfo, callback) {
+    $.ajax({
+      type: 'PUT',
+      url: 'api/boards/1/cells/' + cellInfo.id,
+      data: { cell: cellInfo },
+      success: function (cell) {
+        ApiActions.updateComputerCell(cell);
         callback && callback();
       },
       error: function(data) {

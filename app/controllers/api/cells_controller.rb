@@ -12,6 +12,7 @@ class Api::CellsController < ApplicationController
     @cells =
       Cell.all
         .where(board_id: params[:board_id])
+        .order(:id)
     render :index
   end
 

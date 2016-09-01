@@ -9,6 +9,10 @@ function _getCurrentPlayer () {
   return PlayerStore.currentPlayer();
 }
 
+function _getGameStatus () {
+  return GameStore.gameStatus();
+}
+
 module.exports = React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired
@@ -16,6 +20,7 @@ module.exports = React.createClass({
 
   getInitialState: function () {
     var player = _getCurrentPlayer(),
+        gameStatus = _getGameStatus(),
         playerId;
 
     if (player) {
@@ -24,20 +29,24 @@ module.exports = React.createClass({
 
     return {
       player_id: playerId,
-      computer_id: 3
+      computer_id: 1,
+      gameStatus: gameStatus
     }
   },
 
   componentDidMount: function () {
-    this.onChangeToken = PlayerStore.addListener(this._onPlayerChange)
+    this.onPlayerChangeToken = PlayerStore.addListener(this._onPlayerChange)
+    this.onGameChangeToken = GameStore.addListener(this._onGameChange)
   },
 
   componentWillUnmount: function () {
-    this.onChangeToken.remove();
+    this.onPlayerChangeToken.remove();
+    this.onGameChangeToken.remove();
   },
 
   render: function () {
-    var playerId = this.state.player_id;
+    var playerId = this.state.player_id,
+        computerId = this.state.computer_id;
 
     if (!playerId) {
       return <div></div>
@@ -45,7 +54,7 @@ module.exports = React.createClass({
 
     return (
       <div>
-        <h3>Start Game</h3>
+        <h3>{this.state.gameStatus}</h3>
           <button
             className="start"
             onClick={this._onClick.bind(this, this.state)}>Start
@@ -60,6 +69,14 @@ module.exports = React.createClass({
 
     this.setState({
       player_id: currentPlayer.id
+    })
+  },
+
+  _onGameChange: function () {
+    var gameStatus = _getGameStatus();
+
+    this.setState({
+      gameStatus: gameStatus
     })
   },
 

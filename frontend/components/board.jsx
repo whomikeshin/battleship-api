@@ -32,6 +32,10 @@ function _getCurrentBoard () {
   return BoardStore.currentBoard();
 }
 
+function _getGuesses () {
+  return BoardStore.guesses();
+}
+
 module.exports = React.createClass({
   getInitialState: function () {
     var cells = _getAllCells();
@@ -66,6 +70,7 @@ module.exports = React.createClass({
 
     this.setState({ game_id: game.id })
     ApiUtil.createBoard(this.state)
+    ApiUtil.fetchComputerBoard(1);
   },
 
   componentDidMount: function () {
@@ -80,20 +85,29 @@ module.exports = React.createClass({
 
   render: function () {
     var cells = this.state.cells || [];
+        guesses = _getGuesses();
 
     return (
-      <div className="wrapper">
-        <ul className="board">
-          {cells.map(function (cell) {
-            return <div
-              key={cell.id}
-              className={cell.status}
-            />;
-          })}
-        </ul>
-
+      <div>
+        <div className="wrapper group">
+          <ul className="board">
+            {cells.map(function (cell) {
+              return <div
+                key={cell.id}
+                className={cell.status}/>;
+            })}
+          </ul>
+          <ul className="guess">
+            <h3>Row, Col</h3>
+            {guesses.map(function (guess) {
+              return <li key={guess.id}>
+                {guess.row + ", " + guess.col + ": " + guess.status}</li>
+            })}
+          </ul>
+        </div>
         <Input/>
       </div>
+
     );
   }
 });

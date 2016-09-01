@@ -35,12 +35,14 @@ module.exports = React.createClass({
     return (
       <div>
         <form onSubmit={this._handleSubmit}>
+          <br></br>
           <label htmlFor="row">Row</label>
           <input onChange={this._updateRow} type="text" value={this.state.row}/>
-
+          <br></br>
           <label htmlFor="col">Col</label>
           <input onChange={this._updateCol} type="text" value={this.state.col}/>
-
+          <br></br>
+          <br></br>
           <button className="Enter">Enter</button>
         </form>
       </div>

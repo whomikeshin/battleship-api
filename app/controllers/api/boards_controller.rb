@@ -10,11 +10,11 @@ class Api::BoardsController < ApplicationController
 
   def show
     @board = Board.find(params[:id])
-    if @board.player.initials != "CPU"
-      render :show
-    else
-      render json: ["Cannot access computer board"]
-    end
+    # if @board.player.initials != "CPU"
+    #   render :show
+    # else
+    #   render json: ["Cannot access computer board"]
+    # end
   end
 
   def update

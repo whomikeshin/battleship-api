@@ -11,6 +11,13 @@ module.exports = {
     });
   },
 
+  receiveComputerBoard: function (board) {
+    AppDispatcher.dispatch({
+      actionType: BoardConstants.COMPUTER_BOARD_RECEIVED,
+      board: board
+    });
+  },
+
   receiveGame: function (game) {
     AppDispatcher.dispatch({
       actionType: GameConstants.GAME_RECEIVED,
@@ -42,6 +49,13 @@ module.exports = {
   updateCell: function (cell) {
     AppDispatcher.dispatch({
       actionType: BoardConstants.CELL_UPDATED,
+      cell: cell
+    });
+  },
+
+  updateComputerCell: function (cell) {
+    AppDispatcher.dispatch({
+      actionType: BoardConstants.COMPUTER_CELL_UPDATED,
       cell: cell
     });
   },
