@@ -1,6 +1,7 @@
 var Store = require('flux/utils').Store,
     AppDispatcher = require('../dispatcher/dispatcher'),
-    GameConstants = require('../constants/game_constants');
+    GameConstants = require('../constants/game_constants'),
+    BoardStore = require('../stores/board');
 
 var GameStore = new Store(AppDispatcher),
     _index = 0,
@@ -10,7 +11,14 @@ var GameStore = new Store(AppDispatcher),
 var moves = function () {
   var gameEnd = _currentGame.game_end;
 
-  console.log("gameEnd");
+  if (_index === 3) {
+    BoardStore.checkPlayerCell();
+    _index -= 1;
+  }
+};
+
+GameStore.currentIndex = function () {
+  return _index;
 };
 
 GameStore.currentGame = function () {
@@ -33,8 +41,13 @@ GameStore.__onDispatch = function (payload) {
       moves();
       GameStore.__emitChange();
       break;
-    case GameConstants.ADD_TO_INDEX:
+    case GameConstants.NEXT_INDEX:
       _index += 1;
+      moves();
+      GameStore.__emitChange();
+      break;
+    case GameConstants.PREV_INDEX:
+      _index -= 1;
       moves();
       GameStore.__emitChange();
       break;

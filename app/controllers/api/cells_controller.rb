@@ -22,6 +22,7 @@ class Api::CellsController < ApplicationController
 
   def update
     @cell = Cell.find(params[:id])
+    
 
     if @cell.update(cell_params)
       render :show

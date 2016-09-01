@@ -19,8 +19,8 @@ function _addShip (pos) {
   BoardStore.addShip(pos);
 }
 
-function _checkCell (pos) {
-  BoardStore.checkCell(pos);
+function _checkComputerCell (pos) {
+  BoardStore.checkComputerCell(pos);
 }
 
 
@@ -65,10 +65,10 @@ module.exports = React.createClass({
       ApiUtil.updateCell(targetCell);
       GameActions.gameStart();
     } else {
-      _checkCell(this.state);
+      _checkComputerCell(this.state);
       var targetCell = _getTargetCell();
-      ApiUtil.checkCell(targetCell);
-      GameActions.addToIndex();
+      ApiUtil.updateComputerCell(targetCell);
+      GameActions.nextIndex();
     }
   },
 

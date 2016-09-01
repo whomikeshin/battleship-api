@@ -46,6 +46,7 @@ module.exports = {
   },
 
   createBoard: function(boardInfo, callback) {
+    console.log("Create Board");
     $.ajax({
       type: 'POST',
       url: 'api/boards',

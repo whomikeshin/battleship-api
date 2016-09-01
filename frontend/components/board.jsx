@@ -28,6 +28,10 @@ function _getCurrentGame () {
   return GameStore.currentGame();
 }
 
+function _getGameIndex () {
+  return GameStore.currentIndex();
+}
+
 function _getCurrentBoard () {
   return BoardStore.currentBoard();
 }
@@ -66,11 +70,15 @@ module.exports = React.createClass({
   },
 
   _onGameChange: function () {
-    var game = _getCurrentGame();
+    var game = _getCurrentGame(),
+        index = _getGameIndex();
 
     this.setState({ game_id: game.id })
-    ApiUtil.createBoard(this.state)
-    ApiUtil.fetchComputerBoard(1);
+
+    if (index === 1) {
+      ApiUtil.createBoard(this.state)
+      ApiUtil.fetchComputerBoard(1);
+    }
   },
 
   componentDidMount: function () {

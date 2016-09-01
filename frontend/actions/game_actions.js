@@ -7,9 +7,14 @@ module.exports = {
       actionType: GameConstants.GAME_STARTED,
     });
   },
-  addToIndex: function () {
+  nextIndex: function () {
     AppDispatcher.dispatch({
-      actionType: GameConstants.ADD_TO_INDEX,
+      actionType: GameConstants.NEXT_INDEX,
+    });
+  },
+  prevIndex: function () {
+    AppDispatcher.dispatch({
+      actionType: GameConstants.NEXT_INDEX,
     });
   },
 };
