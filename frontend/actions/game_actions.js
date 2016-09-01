@@ -5,7 +5,11 @@ module.exports = {
   gameStart: function () {
     AppDispatcher.dispatch({
       actionType: GameConstants.GAME_STARTED,
-      board: board
+    });
+  },
+  addToIndex: function () {
+    AppDispatcher.dispatch({
+      actionType: GameConstants.ADD_TO_INDEX,
     });
   },
 };

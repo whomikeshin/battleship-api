@@ -146,6 +146,21 @@ module.exports = {
     });
   },
 
+  checkComputerCell: function(cellInfo, callback) {
+    $.ajax({
+      type: 'PUT',
+      url: 'api/boards/1/cells/' + cellInfo.id,
+      data: { cell: cellInfo },
+      success: function (cell) {
+        ApiActions.checkComputerCell(cell);
+        callback && callback();
+      },
+      error: function(data) {
+        console.log(data);
+      }
+    });
+  },
+
   checkCell: function(cellInfo, callback) {
     $.ajax({
       type: 'PUT',

@@ -3,7 +3,8 @@ var React = require('react'),
     PlayerStore = require('../stores/player'),
     BoardStore = require('../stores/board'),
     Board = require('./board'),
-    ApiUtil = require('../util/api_util');
+    ApiUtil = require('../util/api_util'),
+    GameActions = require('../actions/game_actions');
 
 function _getCurrentPlayer () {
   return PlayerStore.currentPlayer();

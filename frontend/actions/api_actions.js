@@ -53,13 +53,6 @@ module.exports = {
     });
   },
 
-  updateComputerCell: function (cell) {
-    AppDispatcher.dispatch({
-      actionType: BoardConstants.COMPUTER_CELL_UPDATED,
-      cell: cell
-    });
-  },
-
   checkCell: function (cell) {
     AppDispatcher.dispatch({
       actionType: BoardConstants.CELL_CHECKED,
@@ -67,5 +60,18 @@ module.exports = {
     });
   },
 
+  updateComputerCell: function (cell) {
+    AppDispatcher.dispatch({
+      actionType: BoardConstants.COMPUTER_CELL_UPDATED,
+      cell: cell
+    });
+  },
+
+  checkComputerCell: function (cell) {
+    AppDispatcher.dispatch({
+      actionType: BoardConstants.COMPUTER_CELL_CHECKED,
+      cell: cell
+    });
+  },
 
 };

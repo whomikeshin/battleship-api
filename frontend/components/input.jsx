@@ -1,5 +1,6 @@
 var React = require('react'),
     BoardStore = require('../stores/board'),
+    GameActions = require('../actions/game_actions'),
     ApiUtil = require('../util/api_util');
 
 function _getCurrentBoard () {
@@ -54,14 +55,20 @@ module.exports = React.createClass({
     var shipCount = _getShipCount();
     e.preventDefault();
 
-    if (shipCount < 3) {
+    if (shipCount < 2) {
       _addShip(this.state);
       var targetCell = _getTargetCell();
       ApiUtil.updateCell(targetCell);
+    } else if (shipCount === 2) {
+      _addShip(this.state)
+      var targetCell = _getTargetCell();
+      ApiUtil.updateCell(targetCell);
+      GameActions.gameStart();
     } else {
       _checkCell(this.state);
       var targetCell = _getTargetCell();
       ApiUtil.checkCell(targetCell);
+      GameActions.addToIndex();
     }
   },
 

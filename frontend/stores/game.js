@@ -5,7 +5,13 @@ var Store = require('flux/utils').Store,
 var GameStore = new Store(AppDispatcher),
     _index = 0,
     _currentGame,
-    _gameStatuses = [ "Start Game", "Add Ships", "Enter Position", "Computer Move" ];
+    _gameStatuses = [ "Click Start", "Add Ships", "Enter Position", "Computer Move" ];
+
+var moves = function () {
+  var gameEnd = _currentGame.game_end;
+
+  console.log("gameEnd");
+};
 
 GameStore.currentGame = function () {
   return _currentGame;
@@ -20,6 +26,16 @@ GameStore.__onDispatch = function (payload) {
     case GameConstants.GAME_RECEIVED:
       _currentGame = payload.game;
       _index = 1;
+      GameStore.__emitChange();
+      break;
+    case GameConstants.GAME_STARTED:
+      _index = 2;
+      moves();
+      GameStore.__emitChange();
+      break;
+    case GameConstants.ADD_TO_INDEX:
+      _index += 1;
+      moves();
       GameStore.__emitChange();
       break;
   }

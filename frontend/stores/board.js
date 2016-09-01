@@ -6,6 +6,7 @@ var Store = require('flux/utils').Store,
 var BoardStore = new Store(AppDispatcher);
 
 var _cells = [],
+    _computerCells = [],
     _currentBoard,
     _computerBoard,
     _targetCell,
@@ -34,7 +35,7 @@ var addIndex = function () {
   while (randNums.length < 10) {
      j = Math.floor(Math.random() * nums.length);
      randNums.push(nums[j]);
-     nums.splice(j,1);
+     nums.splice(j, 1);
   }
   return randNums;
 };
@@ -46,7 +47,7 @@ var add = function (cell) {
 var randShip = function (pos) {
   var randIndex = addIndex();
   randIndex.forEach(function (index) {
-    var cell = _computerBoard.cells[index];
+    var cell = _computerCells[index];
     cell.status = "ship";
     ApiUtil.updateComputerCell(cell);
   });
@@ -73,7 +74,7 @@ BoardStore.checkCell = function (pos) {
     cell.status = "miss";
   }
 
-  _guesses.push(cell);
+  // _guesses.push(cell);
   _targetCell = cell;
 };
 
@@ -105,6 +106,7 @@ BoardStore.__onDispatch = function (payload) {
       break;
     case BoardConstants.COMPUTER_BOARD_RECEIVED:
       _computerBoard = payload.board;
+      _computerCells = payload.board.cells;
       randShip();
       // BoardStore.__emitChange();
       break;
