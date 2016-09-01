@@ -30,5 +30,28 @@ module.exports = {
       actionType: PlayerConstants.CURRENT_PLAYER_RECEIVED,
       currentPlayer: currentPlayer
     });
-  }
+  },
+
+  receiveCell: function (cell) {
+    AppDispatcher.dispatch({
+      actionType: BoardConstants.CELL_RECEIVED,
+      cell: cell
+    });
+  },
+
+  updateCell: function (cell) {
+    AppDispatcher.dispatch({
+      actionType: BoardConstants.CELL_UPDATED,
+      cell: cell
+    });
+  },
+
+  checkCell: function (cell) {
+    AppDispatcher.dispatch({
+      actionType: BoardConstants.CELL_CHECKED,
+      cell: cell
+    });
+  },
+
+
 };

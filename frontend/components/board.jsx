@@ -1,15 +1,27 @@
 var React = require('react'),
     BoardStore = require('../stores/board'),
     GameStore = require('../stores/game'),
+    Input = require('./input'),
     ApiUtil = require('../util/api_util');
-
 
 function _getAllCells () {
   return BoardStore.all();
 }
 
-function _fillCells () {
-  return BoardStore.fillCells();
+function _createCells () {
+  var board = _getCurrentBoard();
+
+  for(var i = 0; i < 5; i++) {
+    for (var j = 0; j < 5; j++) {
+      var cell = {
+        board_id: board.id,
+        row: i,
+        col: j,
+        status: "null"
+      };
+      ApiUtil.createCell(cell);
+    }
+  }
 }
 
 function _getCurrentGame () {
@@ -33,13 +45,16 @@ module.exports = React.createClass({
   },
 
   _onBoardChange: function () {
-    var board = _getCurrentBoard() || null;
+    var board = _getCurrentBoard();
 
-    var cells = this.state.cells;
-    console.log(cells)
-    cells = cells.length > 0 ? _getAllCells() : _fillCells()
+    var cells = this.state.cells
 
-    console.log(cells)
+    if (cells.length === 0 ) {
+      _createCells()
+    } else {
+      cells = _getAllCells();
+    }
+
     this.setState({
       board_id: board.id,
       cells: cells
@@ -64,26 +79,21 @@ module.exports = React.createClass({
   },
 
   render: function () {
-    var cells = this.state.cells;
+    var cells = this.state.cells || [];
 
     return (
       <div className="wrapper">
-
-        <button
-          className="update"
-          onClick={this._onClick.bind(this, this.state)}>Update
-        </button>
-
         <ul className="board">
           {cells.map(function (cell) {
-            return <div key={cell.id} className={cell.status}/>;
+            return <div
+              key={cell.id}
+              className={cell.status}
+            />;
           })}
         </ul>
+
+        <Input/>
       </div>
     );
-  },
-
-  _onClick: function (boardInfo) {
-    ApiUtil.updateBoard(boardInfo)
   }
 });

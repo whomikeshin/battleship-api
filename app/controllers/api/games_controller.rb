@@ -3,7 +3,6 @@ class Api::GamesController < ApplicationController
     @game = Game.new(game_params)
     if @game.save
       render :show
-      # render json: ["Game was created"]
     else
       render json: @game.errors.full_messages, status: 422
     end

@@ -45,11 +45,11 @@ module.exports = {
     });
   },
 
-  createBoard: function(formData, callback) {
+  createBoard: function(boardInfo, callback) {
     $.ajax({
       type: 'POST',
       url: 'api/boards',
-      data: { board: formData },
+      data: { board: boardInfo },
       success: function (board) {
         ApiActions.receiveBoard(board);
         callback && callback();
@@ -73,13 +73,59 @@ module.exports = {
     });
   },
 
-  updateBoard: function(formData, callback) {
+  updateBoard: function(boardInfo, callback) {
     $.ajax({
       type: 'PUT',
-      url: 'api/boards/' + formData.board_id,
-      data: { board: formData },
+      url: 'api/boards/' + boardInfo.board_id,
+      data: { board: boardInfo },
       success: function (board) {
         ApiActions.receiveBoard(board);
+        callback && callback();
+      },
+      error: function(data) {
+        console.log(data);
+      }
+    });
+  },
+
+  createCell: function(cellInfo, callback) {
+    $.ajax({
+      type: 'POST',
+      url: 'api/boards/' + cellInfo.board_id + '/cells',
+      data: { cell: cellInfo },
+      success: function (cell) {
+        ApiActions.receiveCell(cell);
+        callback && callback();
+      },
+      error: function(data) {
+        console.log(data);
+      }
+    });
+  },
+
+  updateCell: function(cellInfo, callback) {
+    $.ajax({
+      type: 'PUT',
+      url: 'api/boards/' + cellInfo.board_id + '/cells/' + cellInfo.id,
+      data: { cell: cellInfo },
+      success: function (cell) {
+        ApiActions.updateCell(cell);
+        callback && callback();
+      },
+      error: function(data) {
+        console.log(data);
+      }
+    });
+  },
+
+  checkCell: function(cellInfo, callback) {
+    $.ajax({
+      type: 'PUT',
+      url: 'api/boards/' + cellInfo.board_id + '/cells/' + cellInfo.id,
+      data: { cell: cellInfo },
+      success: function (cell) {
+        ApiActions.checkCell(cell);
+        callback && callback();
       },
       error: function(data) {
         console.log(data);
