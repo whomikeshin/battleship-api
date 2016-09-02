@@ -97,7 +97,7 @@ module.exports = React.createClass({
 
     return (
       <div>
-        <div className="wrapper group">
+        <div className="wrapper">
           <ul className="board">
             {cells.map(function (cell) {
               return <div
@@ -105,8 +105,7 @@ module.exports = React.createClass({
                 className={cell.status}/>;
             })}
           </ul>
-          <ul className="guess">
-            <h3>Row, Col</h3>
+          <ul className="guess">Player Guesses
             {guesses.map(function (guess) {
               return <li key={guess.id}>
                 {guess.row + ", " + guess.col + ": " + guess.status}</li>

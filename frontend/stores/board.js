@@ -15,18 +15,6 @@ var _cells = [],
     _playerScore = 0,
     _guesses = [],
     _computerGuesses = [];
-    _turn = true;
-
-
-var reset = function (cells) {
-  _cells = cells.slice();
-};
-
-var convert = function (pos) {
-  var index = 0;
-  index = (parseInt(pos.row) * 5) + parseInt(pos.col);
-  return index;
-};
 
 var indexToPos = function (index) {
   var pos = {row: "", col: ""},
@@ -35,7 +23,6 @@ var indexToPos = function (index) {
 
   pos.row = row.toString();
   pos.col = col.toString();
-  console.log(pos);
   return pos;
 };
 
@@ -84,7 +71,7 @@ BoardStore.checkPlayerCell = function () {
   _computerGuesses.splice(i, 1);
 
   var cell = _cells[index];
-
+  console.log(cell);
   if (cell.status === "ship") {
     cell.status = "hit";
     _playerScore += 1;
@@ -109,8 +96,6 @@ BoardStore.checkComputerCell = function (pos) {
   } else {
     _targetCell.status = "miss";
   }
-
-  // ApiUtil.updateComputerCell(_targetCell);
   _guesses.push(_targetCell);
 };
 

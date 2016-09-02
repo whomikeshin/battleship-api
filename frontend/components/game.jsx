@@ -3,8 +3,7 @@ var React = require('react'),
     PlayerStore = require('../stores/player'),
     BoardStore = require('../stores/board'),
     Board = require('./board'),
-    ApiUtil = require('../util/api_util'),
-    GameActions = require('../actions/game_actions');
+    ApiUtil = require('../util/api_util');
 
 function _getCurrentPlayer () {
   return PlayerStore.currentPlayer();
@@ -56,10 +55,10 @@ module.exports = React.createClass({
     return (
       <div>
         <h3>{this.state.gameStatus}</h3>
-          <button
-            className="start"
-            onClick={this._onClick.bind(this, this.state)}>Start
-          </button>
+        <button
+          className="start"
+          onClick={this._onClick.bind(this, this.state)}>Start
+        </button>
         <Board playerId={playerId}/>
       </div>
     );

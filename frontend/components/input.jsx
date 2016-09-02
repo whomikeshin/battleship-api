@@ -38,14 +38,24 @@ module.exports = React.createClass({
         <form onSubmit={this._handleSubmit}>
           <br></br>
           <label htmlFor="row">Row</label>
+          <br></br>
           <input onChange={this._updateRow} type="text" value={this.state.row}/>
           <br></br>
           <label htmlFor="col">Col</label>
-          <input onChange={this._updateCol} type="text" value={this.state.col}/>
           <br></br>
+          <input onChange={this._updateCol} type="text" value={this.state.col}/>
           <br></br>
           <button className="Enter">Enter</button>
         </form>
+
+        <br></br>
+        <h3>Color Key</h3>
+        <ul className="key">
+          <li>Gray: Ship</li>
+          <li>Red: Hit</li>
+          <li>White: Miss</li>
+        </ul>
+
       </div>
     );
   },
@@ -55,11 +65,11 @@ module.exports = React.createClass({
     var shipCount = _getShipCount();
     e.preventDefault();
 
-    if (shipCount < 2) {
+    if (shipCount < 9) {
       _addShip(this.state);
       var targetCell = _getTargetCell();
       ApiUtil.updateCell(targetCell);
-    } else if (shipCount === 2) {
+    } else if (shipCount === 9) {
       _addShip(this.state)
       var targetCell = _getTargetCell();
       ApiUtil.updateCell(targetCell);

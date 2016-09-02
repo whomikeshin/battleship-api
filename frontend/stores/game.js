@@ -6,13 +6,16 @@ var Store = require('flux/utils').Store,
 var GameStore = new Store(AppDispatcher),
     _index = 0,
     _currentGame,
-    _gameStatuses = [ "Click Start", "Add Ships", "Enter Position", "Computer Move" ];
+    _gameStatuses = [ "Click Start to Play", "Enter Ship Position", "Enter Guess Position", "Computer Move" ];
+
 
 var moves = function () {
   var gameEnd = _currentGame.game_end;
 
   if (_index === 3) {
-    BoardStore.checkPlayerCell();
+
+  BoardStore.checkPlayerCell();
+
     _index -= 1;
   }
 };
