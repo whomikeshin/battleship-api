@@ -40,6 +40,10 @@ function _getGuesses () {
   return BoardStore.guesses();
 }
 
+function _getPlayerScore () {
+  return BoardStore.playerScore();
+}
+
 module.exports = React.createClass({
   getInitialState: function () {
     var cells = _getAllCells();
@@ -78,6 +82,7 @@ module.exports = React.createClass({
     if (index === 1) {
       ApiUtil.createBoard(this.state)
       ApiUtil.fetchComputerBoard(1);
+
     }
   },
 
@@ -93,7 +98,8 @@ module.exports = React.createClass({
 
   render: function () {
     var cells = this.state.cells || [];
-        guesses = _getGuesses();
+        guesses = _getGuesses(),
+        score = _getPlayerScore();
 
     return (
       <div>

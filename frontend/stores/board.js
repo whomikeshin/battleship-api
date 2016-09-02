@@ -16,6 +16,11 @@ var _cells = [],
     _guesses = [],
     _computerGuesses = [];
 
+var convert = function (pos) {
+  var index = (parseInt(pos.row) * 5 + parseInt(pos.col));
+  return index;
+};
+
 var indexToPos = function (index) {
   var pos = {row: "", col: ""},
       row = Math.floor(index / 5);
@@ -47,6 +52,13 @@ var add = function (cell) {
   _cells.push(cell);
 };
 
+var clearCells = function () {
+  _computerCells.forEach(function (cell) {
+    cell.status = "null";
+    ApiUtil.updateComputerCell(cell);
+  });
+};
+
 var randShip = function (pos) {
   var randIndex = addIndex();
   randIndex.forEach(function (index) {
@@ -60,7 +72,6 @@ var randShip = function (pos) {
 BoardStore.addShip = function (pos) {
   var index = convert(pos),
       cell = _cells[index];
-
   cell.status = "ship";
   _targetCell = cell;
 };
@@ -71,10 +82,9 @@ BoardStore.checkPlayerCell = function () {
   _computerGuesses.splice(i, 1);
 
   var cell = _cells[index];
-  console.log(cell);
   if (cell.status === "ship") {
     cell.status = "hit";
-    _playerScore += 1;
+    _computerScore += 1;
   } else {
     cell.status = "miss";
   }
@@ -92,7 +102,7 @@ BoardStore.checkComputerCell = function (pos) {
 
   if (_targetCell.status === "ship") {
     _targetCell.status = "hit";
-    _computerScore += 1;
+    _playerScore += 1;
   } else {
     _targetCell.status = "miss";
   }
@@ -119,6 +129,14 @@ BoardStore.currentBoard = function () {
   return _currentBoard;
 };
 
+BoardStore.playerScore = function () {
+  return _playerScore;
+};
+
+BoardStore.computerScore = function () {
+  return _computerScore;
+};
+
 BoardStore.__onDispatch = function (payload) {
   switch (payload.actionType) {
     case BoardConstants.BOARD_RECEIVED:
@@ -128,15 +146,13 @@ BoardStore.__onDispatch = function (payload) {
     case BoardConstants.COMPUTER_BOARD_RECEIVED:
       _computerBoard = payload.board;
       _computerCells = payload.board.cells;
+      clearCells();
       randShip();
       addGuesses();
-      // BoardStore.__emitChange();
       break;
     case BoardConstants.COMPUTER_CELL_UPDATED:
-      // BoardStore.__emitChange();
       break;
     case BoardConstants.COMPUTER_CELL_CHECKED:
-      // BoardStore.__emitChange();
       break;
     case BoardConstants.CELL_RECEIVED:
       add(payload.cell);

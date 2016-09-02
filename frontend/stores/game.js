@@ -8,14 +8,31 @@ var GameStore = new Store(AppDispatcher),
     _currentGame,
     _gameStatuses = [ "Click Start to Play", "Enter Ship Position", "Enter Guess Position", "Computer Move" ];
 
+function _getPlayerScore () {
+  return BoardStore.playerScore();
+}
+
+function _getComputerScore () {
+  return BoardStore.computerScore();
+}
 
 var moves = function () {
-  var gameEnd = _currentGame.game_end;
+  var playerScore = _getPlayerScore(),
+      computerScore = _getComputerScore();
+
+  console.log(playerScore);
+  console.log(computerScore);
+
+  if (playerScore === 10) {
+    alert("YOU WIN!");
+  }
+
+  if (computerScore === 10) {
+    alert("YOU LOSE!");
+  }
 
   if (_index === 3) {
-
-  BoardStore.checkPlayerCell();
-
+    BoardStore.checkPlayerCell();
     _index -= 1;
   }
 };
