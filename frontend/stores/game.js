@@ -20,9 +20,6 @@ var moves = function () {
   var playerScore = _getPlayerScore(),
       computerScore = _getComputerScore();
 
-  console.log(playerScore);
-  console.log(computerScore);
-
   if (playerScore === 10) {
     alert("YOU WIN!");
   }
