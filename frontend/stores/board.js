@@ -102,9 +102,11 @@ BoardStore.checkComputerCell = function (pos) {
 
   if (_targetCell.status === "ship") {
     _targetCell.status = "hit";
+    window.alert("You hit my battleship!");
     _playerScore += 1;
   } else {
     _targetCell.status = "miss";
+    window.alert("You missed!");
   }
   _guesses.push(_targetCell);
 };
