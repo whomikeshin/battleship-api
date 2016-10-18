@@ -40,13 +40,13 @@ module.exports = {
         callback && callback();
       },
       error: function (data) {
+        window.alert("Intials already taken. Try again!");
         console.log(data);
       }
     });
   },
 
   createBoard: function(boardInfo, callback) {
-    console.log("Create Board");
     $.ajax({
       type: 'POST',
       url: 'api/boards',
