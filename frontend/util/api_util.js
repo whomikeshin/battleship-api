@@ -40,7 +40,7 @@ module.exports = {
         callback && callback();
       },
       error: function (data) {
-        window.alert("Intials already taken. Try again!");
+        window.alert("Initials already taken. Try again!");
         console.log(data);
       }
     });

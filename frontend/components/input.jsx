@@ -23,6 +23,14 @@ function _checkComputerCell (pos) {
   BoardStore.checkComputerCell(pos);
 }
 
+// var board = document.getElementsByClassName('board');
+// if (board.length > 0) {
+//   console.log(board);
+//   board.addEventListener("mouseover", function(event) {
+//     console.log("OVER");
+//   });
+// }
+
 
 module.exports = React.createClass({
   getInitialState: function () {
@@ -90,3 +98,7 @@ module.exports = React.createClass({
     this.setState({ col: e.currentTarget.value });
   },
 });
+
+document.addEventListener("mouseover", function (e) {
+  console.log(e.target.id);
+})

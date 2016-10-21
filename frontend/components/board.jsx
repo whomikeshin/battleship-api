@@ -107,6 +107,7 @@ module.exports = React.createClass({
           <ul className="board">
             {cells.map(function (cell) {
               return <div
+                id={(cell.id - 1) % 25}
                 key={cell.id}
                 className={cell.status}/>;
             })}
