@@ -23,15 +23,6 @@ function _checkComputerCell (pos) {
   BoardStore.checkComputerCell(pos);
 }
 
-// var board = document.getElementsByClassName('board');
-// if (board.length > 0) {
-//   console.log(board);
-//   board.addEventListener("mouseover", function(event) {
-//     console.log("OVER");
-//   });
-// }
-
-
 module.exports = React.createClass({
   getInitialState: function () {
     return {
@@ -43,7 +34,7 @@ module.exports = React.createClass({
   render: function () {
     return (
       <div>
-        <form onSubmit={this._handleSubmit}>
+        <form id="form-id" onSubmit={this._handleSubmit}>
           <br></br>
           <label htmlFor="row">Row</label>
           <br></br>
@@ -53,7 +44,7 @@ module.exports = React.createClass({
           <br></br>
           <input onChange={this._updateCol} type="text" value={this.state.col}/>
           <br></br>
-          <button className="Enter">Enter</button>
+          <button id="button-id"></button>
         </form>
 
         <br></br>
@@ -99,6 +90,19 @@ module.exports = React.createClass({
   },
 });
 
+// document.addEventListener("DOMContentLoaded", function() {
+//   var form = document.getElementById("form-id");
+//   var board = document.getElementById("board-id");
+//   console.log(board);
+//
+//   form.addEventListener("click", function () {
+//     console.log(board);
+//   });
+// });
+
+
 document.addEventListener("mouseover", function (e) {
+  // this.setState({ row: e.target.id });
   console.log(e.target.id);
+  console.log(e.currentTarget.id);
 })

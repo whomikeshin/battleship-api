@@ -54,6 +54,10 @@ body {
   border-right: none;
 }
 
+.board div:hover {
+  background-color: rgba(53, 217, 227, .7);
+}
+
 .board div:nth-last-child(-n+5) {
   border-bottom: none;
 }

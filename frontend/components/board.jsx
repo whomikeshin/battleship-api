@@ -104,7 +104,7 @@ module.exports = React.createClass({
     return (
       <div>
         <div className="wrapper">
-          <ul className="board">
+          <ul id="board-id" className="board">
             {cells.map(function (cell) {
               return <div
                 id={(cell.id - 1) % 25}
