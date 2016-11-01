@@ -70,8 +70,9 @@ var randShip = function (pos) {
 };
 
 BoardStore.addShip = function (pos) {
-  var index = convert(pos),
-      cell = _cells[index];
+  // var index = convert(pos),
+      // cell = _cells[index];
+  var cell = _cells[pos];
   cell.status = "ship";
   _targetCell = cell;
 };

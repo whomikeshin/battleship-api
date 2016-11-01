@@ -1,7 +1,7 @@
 var React = require('react'),
     BoardStore = require('../stores/board'),
     GameStore = require('../stores/game'),
-    Input = require('./input'),
+    // Cell = require('./cell'),
     ApiUtil = require('../util/api_util');
 
 function _getAllCells () {
@@ -103,11 +103,18 @@ module.exports = React.createClass({
 
     return (
       <div>
+        <h3>Color Key</h3>
+        <ul className="key">
+          <li>Gray: Ship</li>
+          <li>Red: Hit</li>
+          <li>White: Miss</li>
+        </ul>
+
         <div className="wrapper">
-          <ul id="board-id" className="board">
+          <ul className="board">
             {cells.map(function (cell) {
               return <div
-                id={(cell.id - 1) % 25}
+                id={"cell-" + parseInt((cell.id - 1) % 25)}
                 key={cell.id}
                 className={cell.status}/>;
             })}
@@ -119,9 +126,13 @@ module.exports = React.createClass({
             })}
           </ul>
         </div>
-        <Input/>
       </div>
 
     );
   }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  var cells = document.querySelectorAll('div[id^="cell-"]')
+  console.log(cells)
 });
