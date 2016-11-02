@@ -24,13 +24,18 @@ function _checkComputerCell (pos) {
 }
 
 module.exports = React.createClass({
+  getInitialState: function () {
+    return {
+      cellId: this.props.id
+    };
+  },
+
   render: function () {
     return (
-      <div
-        className={this.props.cell.status}
-        onClick={console.log(this.props.cell.id)}>
-
-      </div>
+      <form
+        className="cell-form"
+        onClick={console.log("clicked")}>
+      </form>
     );
   },
 

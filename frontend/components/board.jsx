@@ -1,7 +1,7 @@
 var React = require('react'),
     BoardStore = require('../stores/board'),
     GameStore = require('../stores/game'),
-    // Cell = require('./cell'),
+    Cell = require('./cell'),
     ApiUtil = require('../util/api_util');
 
 function _getAllCells () {
@@ -82,7 +82,6 @@ module.exports = React.createClass({
     if (index === 1) {
       ApiUtil.createBoard(this.state)
       ApiUtil.fetchComputerBoard(1);
-
     }
   },
 
@@ -116,13 +115,16 @@ module.exports = React.createClass({
               return <div
                 id={"cell-" + parseInt((cell.id - 1) % 25)}
                 key={cell.id}
-                className={cell.status}/>;
+                className={cell.status}>
+                  <form onSubmit={console.log("clicked!")}></form>
+                </div>;
             })}
           </ul>
           <ul className="guess">Player Guesses
             {guesses.map(function (guess) {
               return <li key={guess.id}>
-                {guess.row + ", " + guess.col + ": " + guess.status}</li>
+                {guess.row + ", " + guess.col + ": " + guess.status}
+              </li>
             })}
           </ul>
         </div>
@@ -132,7 +134,15 @@ module.exports = React.createClass({
   }
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  var cells = document.querySelectorAll('div[id^="cell-"]')
-  console.log(cells)
-});
+// document.addEventListener("DOMContentLoaded", function () {
+//   var cells = document.querySelectorAll('div[id^="cell-"]')
+//
+//   console.log(cells);
+//   if (cells.length > 0) {
+//     cells.forEach(function (cell) {
+//       cell.addEventListener("mouseover", function(e) {
+//         console.log(e.target.id);
+//       })
+//     })
+//   }
+// });
