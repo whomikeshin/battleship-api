@@ -24,17 +24,17 @@ function _checkComputerCell (pos) {
 }
 
 module.exports = React.createClass({
-  getInitialState: function () {
-    return {
-      cellId: this.props.id
-    };
-  },
 
   render: function () {
+    var rowPos;
+    if (this.props.id < 5) {
+      rowPos = "row-0"
+    } else {
+      rowPos = "row-1"
+    }
+
     return (
-      <form
-        className="cell-form"
-        onClick={console.log("clicked")}>
+      <form className={rowPos}>
       </form>
     );
   },

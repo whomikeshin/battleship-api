@@ -62,12 +62,33 @@ body {
   border-bottom: none;
 }
 
-// .cell-form {
-//   width: 82px;
-//   height: 82px;
-//   float: left;
-//   border-right: 2px solid #000;
-//   border-bottom: 2px solid #000;
+.row-0 {
+  width: 82px;
+  height: 82px;
+  float: left;
+  border-right: 2px solid #000;
+  border-bottom: 2px solid #000;
+}
+
+.row-1 {
+  margin-top: 84px;
+  width: 82px;
+  height: 82px;
+  float: left;
+  border-right: 2px solid #000;
+  border-bottom: 2px solid #000;
+}
+
+// .cell-form:nth-child(5n) {
+//   border-right: none;
+// }
+//
+// .cell-form:hover {
+//   background-color: rgba(53, 217, 227, .7);
+// }
+//
+// .cell-form:nth-last-child(-n+5) {
+//   border-bottom: none;
 // }
 
 .null {

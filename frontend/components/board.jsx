@@ -63,6 +63,7 @@ module.exports = React.createClass({
 
     if (cells.length === 0 ) {
       _createCells()
+
     } else {
       cells = _getAllCells();
     }
@@ -113,11 +114,10 @@ module.exports = React.createClass({
           <ul className="board">
             {cells.map(function (cell) {
               return <div
-                id={"cell-" + parseInt((cell.id - 1) % 25)}
+                id={parseInt((cell.id - 1) % 25)}
                 key={cell.id}
                 className={cell.status}>
-                  <form onSubmit={console.log("clicked!")}></form>
-                </div>;
+              </div>;
             })}
           </ul>
           <ul className="guess">Player Guesses
@@ -140,9 +140,15 @@ module.exports = React.createClass({
 //   console.log(cells);
 //   if (cells.length > 0) {
 //     cells.forEach(function (cell) {
-//       cell.addEventListener("mouseover", function(e) {
+//       cell.addEventListener("click", function(e) {
 //         console.log(e.target.id);
 //       })
 //     })
 //   }
 // });
+
+// if (document.getElementById("cell-1")) {
+//   document.getElementById("cell-1").addEventListener("click", function () {
+//     console.log("clicked");
+//   })
+// }
